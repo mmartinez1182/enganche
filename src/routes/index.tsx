@@ -498,12 +498,13 @@ function Inventario() {
   useEffect(() => {
     const el = document.getElementById("autos");
     if (!el) return;
-    const o = new IntersectionObserver(([e]) => { if (e.isIntersecting) { track("down_payment_inventory_view"); o.disconnect(); } });
+    const o = new IntersectionObserver(([e]) => { if (e?.isIntersecting) { track("down_payment_inventory_view"); o.disconnect(); } });
     o.observe(el);
     return () => o.disconnect();
   }, []);
   const [f, setF] = useState("Todos");
-  const [main, ...rest] = CARS;
+  const main = CARS[0]!;
+  const rest = CARS.slice(1);
   return (
     <section id="autos" className="scroll-mt-20 bg-ink px-5 py-16 text-ink-foreground md:py-24">
       <div className="mx-auto max-w-6xl">
