@@ -45,6 +45,9 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  --color-ink: var(--ink);
+  --color-ink-foreground: var(--ink-foreground);
+  --font-sans: "Manrope", system-ui, sans-serif;
   --color-ring-offset-background: var(--background);
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
@@ -62,26 +65,28 @@
 }
 
 :root {
-  --radius: 0.625rem;
+  --radius: 1rem;
   --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
+  --foreground: oklch(0.33 0.005 250);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
+  --card-foreground: oklch(0.33 0.005 250);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
+  --popover-foreground: oklch(0.33 0.005 250);
+  --primary: oklch(0.6 0.21 30);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.33 0.005 250);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.52 0.008 250);
+  --accent: oklch(0.62 0.12 182);
+  --accent-foreground: oklch(1 0 0);
   --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.92 0 0);
+  --input: oklch(0.92 0 0);
+  --ring: oklch(0.6 0.21 30);
+  --ink: oklch(0.33 0.005 250);
+  --ink-foreground: oklch(1 0 0);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -142,3 +147,14 @@
     color: var(--color-foreground);
   }
 }
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
+  input[type=range] { accent-color: var(--primary); height: 2rem; cursor: pointer; }
+}
+@utility bar-anim { transition: width 450ms cubic-bezier(.2,.8,.2,1); }
+@utility flip-inner { transition: transform 600ms; transform-style: preserve-3d; }
+@utility backface-hidden { backface-visibility: hidden; }
+@utility rotate-y-180 { transform: rotateY(180deg); }
+@utility stripes { background-image: repeating-linear-gradient(135deg, transparent 0 8px, color-mix(in oklab, var(--ink) 8%, transparent) 8px 10px); }
